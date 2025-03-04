@@ -74,20 +74,24 @@ export const updateProduct = async (req, res) => {
     const product = await Product.findById(id);
     if (!product) return res.status(404).json({ message: "Product not found" });
 
-    const updatedProduct = await Product.findByIdAndUpdate(id, {
-      $set: {
-        productName: productName || product.productName,
-        productDescription: productDescription || product.productDescription,
-        productQuantity: productQuantity || product.productQuantity,
-        productInStock: productInStock || product.product,
-        productImage: productImage || product.productImage,
-        productCategory: productCategory || product.productCategory,
-        productGallery: productGallery || product.productGallery,
-        productBrand: productBrand || product.productBrand,
-        productActive: productActive || product.productActive,
-        productPrice: productPrice || product.productPrice,
+    const updatedProduct = await Product.findByIdAndUpdate(
+      id,
+      {
+        $set: {
+          productName: productName || product.productName,
+          productDescription: productDescription || product.productDescription,
+          productQuantity: productQuantity || product.productQuantity,
+          productInStock: productInStock || product.product,
+          productImage: productImage || product.productImage,
+          productCategory: productCategory || product.productCategory,
+          productGallery: productGallery || product.productGallery,
+          productBrand: productBrand || product.productBrand,
+          productActive: productActive || product.productActive,
+          productPrice: productPrice || product.productPrice,
+        },
       },
-    });
+      { new: true }
+    );
     res
       .status(200)
       .json({ message: "Product Updated Successfully", data: updatedProduct });

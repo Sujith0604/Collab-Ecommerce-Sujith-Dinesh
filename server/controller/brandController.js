@@ -46,14 +46,18 @@ export const updateBrand = async (req, res) => {
       return res.status(404).json({ message: "Brand not found" });
     }
 
-    const brand = await Brand.findByIdAndUpdate(id, {
-      $set: {
-        brandName: brandName || existBrand.brandName,
-        brandDescription: brandDescription || existBrand.brandDescription,
-        brandLogo: brandLogo || existBrand.brandLogo,
-        brandActive: existBrand.brandActive || existBrand.brandActive,
+    const brand = await Brand.findByIdAndUpdate(
+      id,
+      {
+        $set: {
+          brandName: brandName || existBrand.brandName,
+          brandDescription: brandDescription || existBrand.brandDescription,
+          brandLogo: brandLogo || existBrand.brandLogo,
+          brandActive: existBrand.brandActive || existBrand.brandActive,
+        },
       },
-    });
+      { new: true }
+    );
     res
       .status(200)
       .json({ message: "Brand Updated Successfully", data: brand });

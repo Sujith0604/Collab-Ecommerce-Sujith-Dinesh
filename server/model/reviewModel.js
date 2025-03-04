@@ -12,6 +12,8 @@ const reviewSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Customer",
     },
+    reviewdate: { type: Date, default: Date.now },
+    reviewAccepted: { type: Boolean, default: false },
   },
 
   {
