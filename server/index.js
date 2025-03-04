@@ -1,14 +1,17 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
+import dotenv from "dotenv";
+import server from "./server/server.js";
+import mongoConnection from "./config/mongoConnection.js";
+
+dotenv.config();
 
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
 
-const port = 3000;
+mongoConnection;
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+server;
